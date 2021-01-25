@@ -1,40 +1,30 @@
 package com.simhero.hello.service;
 
 import com.simhero.hello.domain.Member;
-import com.simhero.hello.repository.MemoryMemberRepository;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@Slf4j
+@SpringBootTest
+public class MemberServiceTest {
 
-class MemberServiceTest {
-
-    MemberService memberService;
-    MemoryMemberRepository memberRepository;
-
-    @BeforeEach
-    void setUp() {
-        memberRepository = new MemoryMemberRepository();
-        memberService = new MemberService(memberRepository);
-    }
-
-    @AfterEach
-    void tearDown() {
-        memberRepository.clearStore();
-    }
+    @Autowired MemberService memberService;
 
     @Test
-    void join() {
+    public void join() {
         // given
         Member member = new Member();
-        member.setName("hello");
+        member.setName("hello2");
 
+        log.info("member {}",member);
         // when
         Long id = memberService.join(member);
+        log.info("member {}",member);
 
         // then
         Member member1 = memberService.findById(id).get();

@@ -5,8 +5,11 @@ import com.simhero.hello.service.MemberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class MemberController {
@@ -32,6 +35,13 @@ public class MemberController {
         Member member = new Member();
         member.setName(memberForm.getName());
         memberService.join(member);
-        return "redirect:/";
+        return "redirect:listMembers";
+    }
+
+    @GetMapping("members/listMembers")
+    public String listMember(Model model) {
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/listMembers";
     }
 }

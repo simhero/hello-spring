@@ -1,17 +1,10 @@
 package com.simhero.hello.repository;
 
 import com.simhero.hello.domain.Member;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
 import java.util.Optional;
 
-public interface MemberRepository {
-
-    public Member save(Member member);
-
-    public List<Member> findAll();
-
-    public Optional<Member> findById(Long id);
-
-    public Optional<Member> findByName(String name);
+public interface MemberRepository extends JpaRepository<Member,Long> {
+    Optional<Member> findByName(String name);
 }
