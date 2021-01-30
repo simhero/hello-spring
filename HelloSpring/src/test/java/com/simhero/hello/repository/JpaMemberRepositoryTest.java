@@ -12,7 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-class MemoryMemberRepositoryTest {
+class JpaMemberRepositoryTest {
 
     @Autowired
     MemberRepository memberRepository;

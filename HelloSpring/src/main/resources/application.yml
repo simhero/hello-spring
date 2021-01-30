@@ -13,6 +13,8 @@ spring:
 ## Hibernate
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: validate
     properties:
       hibernate:
         formate_sql=true
